@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Banana Game</title>
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" onmousemove="mouseMove(event)"> </canvas>
+    <div style="display: none">
+      <img id="alien" src="alien.png" width="64" height="97" />
+    </div>
+
+    <script>
+      const canvas = document.querySelector("#canvas");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      let player = {
+        x: 0,
+        y: window.innerHeight - 120,
+      };
+
+      const context = canvas.getContext("2d");
+
+      function drawAlien(x) {
+        context.drawImage(alien, x, player.y);
+      }
+
+      function clearScreen() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+      }
+
+      function mouseMove(event) {
+        player.x = event.clientX;
+
+        clearScreen();
+        drawAlien(player.x);
+      }
+    </script>
+  </body>
+</html>
