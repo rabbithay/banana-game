@@ -20,6 +20,8 @@
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
 
+      let gameLoopInterval;
+
       let player = {
         x: 0,
         y: window.innerHeight - 120,
@@ -53,14 +55,26 @@
         player.x = event.clientX;
       }
 
+      function checkCollision() {
+        const distance = Math.sqrt(
+          Math.pow(player.x - enemy.x, 2) + Math.pow(player.y - enemy.y, 2)
+        );
+        return distance < 30 + 30;
+      }
+
       function gameLoop() {
         clearScreen();
         drawAlien();
         drawBomb();
         dropBomb();
+
+        if (checkCollision()) {
+          clearInterval(gameLoopInterval);
+          alert("Você perdeu!");
+        }
       }
 
-      setInterval(() => {
+      gameLoopInterval = setInterval(() => {
         gameLoop();
       }, 1000 / 120);
     </script>
