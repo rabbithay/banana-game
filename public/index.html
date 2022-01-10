@@ -12,6 +12,7 @@
     <canvas id="canvas" onmousemove="mouseMove(event)"> </canvas>
     <div style="display: none">
       <img id="alien" src="alien.png" width="64" height="97" />
+      <img id="bomb" src="bomb.png" width="67" height="67" />
     </div>
 
     <script>
@@ -24,10 +25,24 @@
         y: window.innerHeight - 120,
       };
 
+      let enemy = {
+        x: window.innerWidth * Math.random(),
+        y: 0,
+        speed: 2,
+      };
+
       const context = canvas.getContext("2d");
 
-      function drawAlien(x) {
-        context.drawImage(alien, x, player.y);
+      function drawAlien() {
+        context.drawImage(alien, player.x, player.y);
+      }
+
+      function drawBomb() {
+        context.drawImage(bomb, enemy.x, enemy.y);
+      }
+
+      function dropBomb() {
+        enemy.y += enemy.speed;
       }
 
       function clearScreen() {
@@ -36,10 +51,18 @@
 
       function mouseMove(event) {
         player.x = event.clientX;
-
-        clearScreen();
-        drawAlien(player.x);
       }
+
+      function gameLoop() {
+        clearScreen();
+        drawAlien();
+        drawBomb();
+        dropBomb();
+      }
+
+      setInterval(() => {
+        gameLoop();
+      }, 1000 / 120);
     </script>
   </body>
 </html>
