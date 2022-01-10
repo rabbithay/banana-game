@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
   <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Banana Game</title>
     <style>
       body {
@@ -9,10 +12,12 @@
     </style>
   </head>
   <body>
+    <div id="root"></div>
+    <script src="bundle.js"></script>
     <canvas id="canvas" onmousemove="mouseMove(event)"> </canvas>
     <div style="display: none">
-      <img id="alien" src="alien.png" width="64" height="97" />
-      <img id="bomb" src="bomb.png" width="67" height="67" />
+      <img id="alien" src="assets/alien.png" width="64" height="97" />
+      <img id="bomb" src="assets/bomb.png" width="67" height="67" />
     </div>
 
     <script>
